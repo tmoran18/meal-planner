@@ -1,0 +1,4 @@
+{
+	"mongoURI": "mongodb+srv://meal-shopper:ropeYAWNtact21@cluster0.qxemu.mongodb.net/meal_shopper?retryWrites=true&w=majority",
+	"jwtSecret": "finishBAKERjacks"
+}
