@@ -57,8 +57,15 @@ router.post(
 // @route       PUT api/ingredient
 // @desc        Edit an ingredient
 // @access      Private
-router.put('/:id', (req, res) => {
-  res.send('Edit an ingredient')
+router.put('/:id', auth, async (req, res) => {
+  const query = req.body._id
+  const update = req.body
+  try {
+    await Ingredient.findOneAndUpdate(query, update)
+    res.send('Edit an ingredient')
+  } catch (error) {}
+  console.error(error.messages)
+  res.status(500).send('Server Error')
 })
 
 // @route       DELETE api/ingredient
