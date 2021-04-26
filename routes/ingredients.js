@@ -64,8 +64,13 @@ router.put('/:id', (req, res) => {
 // @route       DELETE api/ingredient
 // @desc        Delete a ingredient
 // @access      Private
-router.delete('/:id', (req, res) => {
-  res.send('Delete an ingredient')
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    await Ingredient.findOneAndRemove({ _id: req.params.id })
+    res.send('Delete an ingredient')
+  } catch (error) {}
+  console.error(error.messages)
+  res.status(500).send('Server Error')
 })
 
 module.exports = router
