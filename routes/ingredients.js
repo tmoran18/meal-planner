@@ -27,7 +27,7 @@ router.post(
   [
     auth,
     check('name', 'Name is required').not().isEmpty(),
-    check('caetgory', 'Category is required').not().isEmpty(),
+    check('category', 'Category is required').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req)
