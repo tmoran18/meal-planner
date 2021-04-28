@@ -58,10 +58,10 @@ router.post(
 // @desc        Edit an ingredient
 // @access      Private
 router.put('/:id', auth, async (req, res) => {
-  const query = req.body._id
-  const update = req.body
   try {
-    await Ingredient.findOneAndUpdate(query, update)
+    await Ingredient.findOneAndUpdate({ id: req.params.id }, req.body, {
+      new: true,
+    })
     res.send('Edit an ingredient')
   } catch (error) {}
   console.error(error.messages)
