@@ -5,6 +5,7 @@ const app = express()
 
 // Init Middleware
 app.use(express.json({ extended: false }))
+app.use(cors())
 connectDB()
 
 // Define Routes
