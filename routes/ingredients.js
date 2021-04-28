@@ -59,7 +59,7 @@ router.post(
 // @access      Private
 router.put('/:id', auth, async (req, res) => {
   try {
-    await Ingredient.findOneAndUpdate({ id: req.params.id }, req.body, {
+    await Ingredient.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
     })
     res.send('Edit an ingredient')
