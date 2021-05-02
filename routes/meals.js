@@ -83,13 +83,12 @@ router.put('/:id', auth, async (req, res) => {
 // @desc        Delete a meal
 // @access      Private
 router.delete('/:id/:imageID', auth, async (req, res) => {
-  const imageID = req.params.imageID
   try {
     //   await Meal.findOneAndRemove({ _id: req.params.id })
     // await cloudinary.uploader.destroy(imageID, function (error, result) {
     //   console.log(result, error)
     // })
-    res.send(imageID)
+    res.send(req.params.imageID)
   } catch (error) {}
   console.error(error.messages)
   res.status(500).send('Server Error')
