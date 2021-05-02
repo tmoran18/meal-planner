@@ -82,7 +82,7 @@ router.put('/:id', auth, async (req, res) => {
 // @route       DELETE api/meal
 // @desc        Delete a meal
 // @access      Private
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id/:imageID', auth, async (req, res) => {
   const imageID = req.params.imageID
   try {
     await Meal.findOneAndRemove({ _id: req.params.id })
