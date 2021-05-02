@@ -65,16 +65,6 @@ router.post(
   }
 )
 
-router.post('/delete/:id', auth, async (req, res) => {
-  const { imageID } = req.body
-  try {
-    //await Meal.findOneAndRemove({ _id: req.params.id })
-    res.send(imageID, req.params.id)
-  } catch (error) {}
-  console.error(error.messages)
-  res.status(500).send('Server Error')
-})
-
 // @route       PUT api/meal
 // @desc        Edit a meal
 // @access      Private
@@ -93,9 +83,10 @@ router.put('/:id', auth, async (req, res) => {
 // @desc        Delete a meal
 // @access      Private
 router.delete('/:id', auth, async (req, res) => {
+  const { imageID } = req.body.imageID
   try {
-    await Meal.findOneAndRemove({ _id: req.params.id })
-    res.send('Delete a Meal')
+    //await Meal.findOneAndRemove({ _id: req.params.id })
+    res.send(imageID, req.params.id)
   } catch (error) {}
   console.error(error.messages)
   res.status(500).send('Server Error')

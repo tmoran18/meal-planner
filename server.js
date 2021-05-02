@@ -13,7 +13,6 @@ connectDB()
 app.use('/api/users', require('./routes/users'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/meals', require('./routes/meals'))
-app.use('/api/meals/delete', require('./routes/meals'))
 app.use('/api/ingredients', require('./routes/ingredients'))
 
 const PORT = process.env.PORT || 5000
