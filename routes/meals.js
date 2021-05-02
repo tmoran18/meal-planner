@@ -85,7 +85,7 @@ router.put('/:id', auth, async (req, res) => {
 router.delete('/:id/:imageID', auth, async (req, res) => {
   const imageID = req.params.imageID
   try {
-    await Meal.findOneAndRemove({ _id: req.params.id })
+    //   await Meal.findOneAndRemove({ _id: req.params.id })
     // await cloudinary.uploader.destroy(imageID, function (error, result) {
     //   console.log(result, error)
     // })
