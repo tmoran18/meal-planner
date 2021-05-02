@@ -37,13 +37,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { name, secondary_name, image_URL, ingredients } = req.body
+    const { name, secondary_name, image_URL, imageID, ingredients } = req.body
 
     try {
       const newMeal = new Meal({
         name,
         secondary_name,
         image_URL,
+        imageID,
         ingredients,
         user: req.user.id,
       })
