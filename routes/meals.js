@@ -1,10 +1,17 @@
 const express = require('express')
+const cloudinary = require('cloudinary').v2
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const auth = require('../middleware/auth')
 
 const User = require('../models/User')
 const Meal = require('../models/Meal')
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+})
 
 // @route       GET api/meals
 // @desc        Get all users meals
@@ -76,8 +83,12 @@ router.put('/:id', auth, async (req, res) => {
 // @desc        Delete a meal
 // @access      Private
 router.delete('/:id', auth, async (req, res) => {
+  const imageID = req.params.imageID
   try {
     await Meal.findOneAndRemove({ _id: req.params.id })
+    await cloudinary.uploader.destroy(imageID, function (error, result) {
+      console.log(result, error)
+    })
     res.send('Delete a Meal')
   } catch (error) {}
   console.error(error.messages)
