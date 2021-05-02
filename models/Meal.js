@@ -17,7 +17,7 @@ const MealSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  image_ID: {
+  imageID: {
     type: String,
     required: true,
   },
