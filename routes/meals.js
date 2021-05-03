@@ -1,17 +1,10 @@
 const express = require('express')
-const cloudinary = require('cloudinary').v2
 const router = express.Router()
 const { check, validationResult } = require('express-validator')
 const auth = require('../middleware/auth')
 
 const User = require('../models/User')
 const Meal = require('../models/Meal')
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-})
 
 // @route       GET api/meals
 // @desc        Get all users meals
@@ -65,6 +58,15 @@ router.post(
   }
 )
 
+router.post('/delete/:id', auth, (req, res) => {
+  try {
+    res.send('New Delete Working')
+  } catch (error) {
+    console.error(error.messages)
+    res.status(500).send('Server Error')
+  }
+})
+
 // @route       PUT api/meal
 // @desc        Edit a meal
 // @access      Private
@@ -74,19 +76,6 @@ router.put('/:id', auth, async (req, res) => {
       new: true,
     })
     res.send('Edit a Meal')
-  } catch (error) {}
-  console.error(error.messages)
-  res.status(500).send('Server Error')
-})
-
-// @route       DELETE api/meal
-// @desc        Delete a meal
-// @access      Private
-router.delete('/:id', auth, async (req, res) => {
-  const imageID = req.data.imageID
-  try {
-    //await Meal.findOneAndRemove({ _id: req.params.id })
-    res.send(imageID, req.params.id)
   } catch (error) {}
   console.error(error.messages)
   res.status(500).send('Server Error')
