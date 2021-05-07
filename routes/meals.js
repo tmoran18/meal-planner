@@ -37,7 +37,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { name, secondary_name, image_URL, imageID, ingredients } = req.body
+    const {
+      name,
+      secondary_name,
+      image_URL,
+      imageID,
+      ingredients,
+      steps,
+    } = req.body
 
     try {
       const newMeal = new Meal({
@@ -46,6 +53,7 @@ router.post(
         image_URL,
         imageID,
         ingredients,
+        steps,
         user: req.user.id,
       })
 
@@ -57,15 +65,6 @@ router.post(
     }
   }
 )
-
-router.post('/delete/:id', auth, (req, res) => {
-  try {
-    res.send('New Delete Working')
-  } catch (error) {
-    console.error(error.messages)
-    res.status(500).send('Server Error')
-  }
-})
 
 // @route       PUT api/meal
 // @desc        Edit a meal
